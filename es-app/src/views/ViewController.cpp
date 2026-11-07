@@ -539,6 +539,8 @@ void ViewController::reloadGameListView(IGameListView* view, bool reloadTheme)
 			bool isCurrent = (mCurrentView == it->second);
 			SystemData* system = it->first;
 			FileData* cursor = view->getCursor();
+			// check before erase(): a placeholder cursor is owned by the view and freed with it
+			const bool restoreCursor = cursor && !cursor->isPlaceHolder();
 			int viewportTop = view->getViewportTop();
 			mGameListViews.erase(it);
 
@@ -548,7 +550,7 @@ void ViewController::reloadGameListView(IGameListView* view, bool reloadTheme)
 			std::shared_ptr<IGameListView> newView = getGameListView(system);
 
 			// to counter having come from a placeholder
-			if (!cursor->isPlaceHolder()) {
+			if (restoreCursor) {
 				newView->setCursor(cursor);
 				newView->setViewportTop(viewportTop);
 			}
@@ -571,7 +573,9 @@ void ViewController::reloadAll(bool themeChanged)
 	std::map<SystemData*, int> viewportTopMap;
 	for(auto it = mGameListViews.cbegin(); it != mGameListViews.cend(); it++)
 	{
-		cursorMap[it->first] = it->second->getCursor();
+		// a placeholder cursor is owned by the view and is freed by clear() below, so don't keep it
+		FileData* cursor = it->second->getCursor();
+		cursorMap[it->first] = (cursor && !cursor->isPlaceHolder()) ? cursor : nullptr;
 		viewportTopMap[it->first] = it->second->getViewportTop();
 	}
 	mGameListViews.clear();
@@ -588,7 +592,9 @@ void ViewController::reloadAll(bool themeChanged)
 		mWindow->renderLoadingScreen("Loading...", static_cast<float>(reloaded++) / static_cast<float>(cursorMap.size() + 1));
 		it->first->loadTheme();
 		it->first->getIndex()->resetFilters();
-		getGameListView(it->first)->setCursor(it->second);
+		std::shared_ptr<IGameListView> view = getGameListView(it->first);
+		if(it->second)
+			view->setCursor(it->second);
 	}
 
 	if(!themeChanged || !Settings::getInstance()->getBool("UseFullscreenPaging"))
