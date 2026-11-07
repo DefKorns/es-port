@@ -288,6 +288,8 @@ std::vector<HelpPrompt> BasicGameListView::getHelpPrompts()
 	prompts.push_back(HelpPrompt("b", mFloating.valid && canJumpTo(findGame(mFloating.code)) ? "go to last saved game" : "back"));
 	if(!UIModeController::getInstance()->isUIModeKid())
 		prompts.push_back(HelpPrompt("select", "options"));
+	if(!(UIModeController::getInstance()->isUIModeKid() && Settings::getInstance()->getBool("DisableKidStartMenu")))
+		prompts.push_back(HelpPrompt("start", "settings"));
 	if(mRoot->getSystem()->isGameSystem() && hasExtraButtons())
 		prompts.push_back(HelpPrompt("x", "random"));
 	if(mRoot->getSystem()->isGameSystem() && hasExtraButtons() && !UIModeController::getInstance()->isUIModeKid())
