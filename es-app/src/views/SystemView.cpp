@@ -457,6 +457,9 @@ std::vector<HelpPrompt> SystemView::getHelpPrompts()
 	if (!UIModeController::getInstance()->isUIModeKid() && Settings::getInstance()->getBool("ScreenSaverControls"))
 		prompts.push_back(HelpPrompt("select", "launch screensaver"));
 
+	if (!(UIModeController::getInstance()->isUIModeKid() && Settings::getInstance()->getBool("DisableKidStartMenu")))
+		prompts.push_back(HelpPrompt("start", "settings"));
+
 	return prompts;
 }
 
