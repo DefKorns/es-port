@@ -663,6 +663,8 @@ std::vector<HelpPrompt> GridGameListView::getHelpPrompts()
 		prompts.push_back(HelpPrompt("y", "sort"));
 	else
 		prompts.push_back(HelpPrompt("select", "options"));
+	if(!(UIModeController::getInstance()->isUIModeKid() && Settings::getInstance()->getBool("DisableKidStartMenu")))
+		prompts.push_back(HelpPrompt("start", "settings"));
 	return prompts;
 }
 
