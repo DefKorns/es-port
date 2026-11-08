@@ -17,3 +17,5 @@ To report a problem, send `/var/lib/hakchi/emulationstation/home/.emulationstati
 Hold Select while the console boots to get the stock UI. After two fast crashes in a row it falls back to the stock UI by itself.
 
 Uninstalling removes EmulationStation, its settings and library cache from the NAND but keeps the favourites list. It also mounts the card and removes the theme files you did not change; the ones you changed or added stay.
+
+**Return to EmulationStation tile.** If you end up in the stock menu (after a crash or booting with Select), a tile can start EmulationStation again without rebooting. It is a hakchi game package: add `CLV-Z-ESRET.clvg` (from the `hakchi-app` folder of the es-port repository) with "Add more games" in hakchi and sync. EmulationStation does not list it as a game.

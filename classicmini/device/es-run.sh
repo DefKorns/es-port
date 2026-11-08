@@ -42,8 +42,8 @@ for cfg in es_settings.cfg es_input.cfg; do
 done
 library_stamp=$es_dir/library.stamp
 games_dir=$(findGameStorage)
-games_count=$(find "$games_dir" -name '*.desktop' | wc -l)
-if [ -d "$es_dir/library" ] && [ "$(cat "$library_stamp.count" 2>/dev/null)" = "$games_count" ]   && [ -z "$(find "$games_dir" /media/data/emulationstation/covers "$es_dir/es-library.sh" \( -name '*.desktop' -o -name '*.png' -o -name 'aliases.txt' -o -name 'es-library.sh' \) -newer "$library_stamp" 2>/dev/null | head -n 1)" ]; then
+games_count=$(find "$games_dir" -name '*.desktop' ! -path '*/CLV-Z-ESRET/*' | wc -l)
+if [ -d "$es_dir/library" ] && [ "$(cat "$library_stamp.count" 2>/dev/null)" = "$games_count" ]   && [ -z "$(find "$games_dir" /media/data/emulationstation/covers "$es_dir/es-library.sh" \( -name '*.desktop' -o -name '*.png' -o -name 'aliases.txt' -o -name 'es-library.sh' \) ! -path '*/CLV-Z-ESRET/*' -newer "$library_stamp" 2>/dev/null | head -n 1)" ]; then
   rm -rf /tmp/es-library
   cp -a "$es_dir/library" /tmp/es-library
 else

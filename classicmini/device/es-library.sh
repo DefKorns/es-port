@@ -181,6 +181,7 @@ readGames() {
     if (n < 3) next
     c = a[n - 1]; m = a[n - 2]
     if (a[n] != c ".desktop") next
+    if (c == "CLV-Z-ESRET") next
 
     nm = ""; ex = ""; ic = ""; rel = ""; pl = ""; ge = ""; sg = ""; ds = ""; indesc = 0
     haveName = haveExec = haveIcon = haveRel = havePl = haveGe = haveSg = 0
