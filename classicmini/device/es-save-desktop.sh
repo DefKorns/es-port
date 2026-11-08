@@ -19,7 +19,7 @@ script_init
 
 code=${1:?game code}
 store=$(findGameStorage) || exit 1
-backup=/var/lib/hakchi/ts_backup/desktop_pre_scrape
+backup=/media/data/emulationstation/desktop_pre_scrape
 mkdir -p "$backup"
 
 find "$store" -path "$store/.storage" -prune -o -name "$code.desktop" -print | while read -r desktop; do
