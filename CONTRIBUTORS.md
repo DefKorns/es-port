@@ -5,7 +5,7 @@ This is the `classicmini` port of EmulationStation for the NES/SNES Classic. It 
 ## classicmini port
 
 - [DefKorns](https://github.com/DefKorns): port, device integration and packaging
-- [viral_dna (DNA64)](https://github.com/DNA64): Start/Settings help prompts on the home screen and game lists ([#1](https://github.com/DefKorns/es-port/pull/1), [#2](https://github.com/DefKorns/es-port/pull/2), [#3](https://github.com/DefKorns/es-port/pull/3)); fix for a crash when reloading with an empty game list ([#4](https://github.com/DefKorns/es-port/pull/4))
+- [viral_dna (DNA64)](https://github.com/DNA64): Start/Settings help prompts on the home screen and game lists ([#1](https://github.com/DefKorns/es-port/pull/1), [#2](https://github.com/DefKorns/es-port/pull/2), [#3](https://github.com/DefKorns/es-port/pull/3)); fix for a crash when reloading with an empty game list ([#4](https://github.com/DefKorns/es-port/pull/4)), which showed up when changing the theme or colour scheme; the idea of a "Return to EmulationStation" tile in the stock menu
 
 ## Upstream
 
